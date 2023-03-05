@@ -38,10 +38,13 @@ Planned improvements:
 
 - 1x raspberry pi
 - 1x 4-channel 5V relay
-- 4x 4Ohm 5W resistors
+- 4x 4&Omega; 5W resistors[^1]
 - 1x MCP3008 Analog numeric converter
 - 1x 4 slots battery holder
 - 1x USB wifi dongle (optional)
+
+[^1]: Other small value resistor can be used, but you need to update the value in the code
+
 
 ## Wiring
 
@@ -59,10 +62,9 @@ Example of construction
 ### Install the required libraries
 
 ```
-sudo pip3 install --upgrade setuptools
-sudo apt-get install -y python-smbus
-sudo apt-get install -y python3-tk
-sudo apt-get install -y i2c-tools
+sudo pip3 install --upgrade pip setuptools
+sudo apt install -y i2c-tools python3-smbus python3-tk
+
 ```
 
 ### Enable I2C
@@ -85,7 +87,12 @@ Configure SPI with the following commands:
 
 ```
 sudo raspi-config
-Interfacing options / SPI / YES
+```
+In the menus, go to `Interfacing options`, then `SPI` and choose `YES`
+
+Then, run
+
+```
 sudo reboot
 ls -l /dev/spidev*
 ```
